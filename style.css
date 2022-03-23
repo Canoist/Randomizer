@@ -80,6 +80,7 @@ h6 {
 /*--------------------*/
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 19px;
@@ -145,4 +146,33 @@ button:active {
   line-height: 30px;
   border: dotted;
   color: linen;
+}
+.choosed{
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 200px;
+  height: 165px;
+}
+ul{
+  width: 60px;
+}
+ul li {
+  height: 25px;
+  text-align: center;
+  line-height: 25px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.flash-screen{
+  opacity: 0;
+  z-index: 3;
+  animation: flash 1.5s ease-in;
+}
+
+@keyframes flash {
+0%{opacity:0;}
+100%{opacity:1;}
 }
