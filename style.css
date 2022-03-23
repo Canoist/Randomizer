@@ -110,13 +110,14 @@ input:focus {
   box-shadow: 1px 1px 5px darkblue;
 }
 button {
+  height: 65px;
+  text-align: center;
   padding: 5px 15px;
   border-radius: 5px;
   border: solid 1px black;
   font-size: 17px;
   box-shadow: 0 3px 3px #000;
   background-color: gold;
-
 }
 button:active {
   position: relative;
@@ -147,7 +148,7 @@ button:active {
   border: dotted;
   color: linen;
 }
-.choosed{
+.choosed {
   margin-top: 15px;
   display: flex;
   justify-content: space-between;
@@ -155,7 +156,7 @@ button:active {
   width: 200px;
   height: 165px;
 }
-ul{
+ul {
   width: 60px;
 }
 ul li {
@@ -166,13 +167,17 @@ ul li {
   margin-bottom: 5px;
 }
 
-.flash-screen{
+.flash-screen {
   opacity: 0;
   z-index: 3;
   animation: flash 1.5s ease-in;
 }
 
 @keyframes flash {
-0%{opacity:0;}
-100%{opacity:1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
