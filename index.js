@@ -9,6 +9,7 @@ const list_3 = document.querySelector("#list_3");
 
 const refreshButton = document.createElement("button");
 refreshButton.textContent = "Запустить заново";
+refreshButton.style.marginTop = "15px";
 
 let numbersOfUsers = null;
 function generate(limit) {
@@ -53,35 +54,44 @@ function setBackgroundColor(value) {
 }
 
 function generateNumber() {
+  if (valueEl.className) {
+    valueEl.className = "";
+  }
   const index = Math.floor(Math.random() * numbersOfUsers.length);
   setBackgroundColor(numbersOfUsers[index] + 1);
+  valueEl.className = "fadeOut";
   if (numbersOfUsers[index] + 1 < 10) {
     valueEl.innerHTML = `0${numbersOfUsers[index] + 1}`;
   } else {
     valueEl.innerHTML = numbersOfUsers[index] + 1;
   }
+  valueEl.focus();
+  valueEl.className = "fadeIn";
+
   numbersOfUsers.splice(index, 1);
 }
 
 button.addEventListener("click", (e) => {
   e.preventDefault();
-  document.body.classList.toggle("flash-screen");
-  button.setAttribute("disabled", true);
-  setTimeout(() => {
-    document.body.classList.toggle("flash-screen");
-    if (numbersOfUsers.length) {
-      button.removeAttribute("disabled");
-    }
-  }, 1500);
+  if (button.textContent !== "Ок") {
+    mainWindow.style.maxHeight = "308px";
+    number.style.transform = "scaleY(1)";
+  }
   if (numbersOfUsers === null) {
-    button.textContent = "Получить номер и цвет команды";
+    button.textContent = "Ок";
     generate(input.value);
     generateNumber();
   } else if (numbersOfUsers.length > 1) {
-    generateNumber();
-  } else if ((numbersOfUsers.length = 1)) {
+    if (button.textContent === "Получить номер и цвет команды") {
+      button.textContent = "Ок";
+      generateNumber();
+    } else {
+      button.textContent = "Получить номер и цвет команды";
+    }
+  } else if (numbersOfUsers.length === 1) {
     mainWindow.append(refreshButton);
     button.setAttribute("disabled", true);
+    mainWindow.style.maxHeight = "500px";
     generateNumber();
   }
 });
@@ -92,8 +102,10 @@ refreshButton.addEventListener("click", (e) => {
   list_3.innerHTML = "";
   input.removeAttribute("disabled");
   button.removeAttribute("disabled");
-  button.textContent = "Подтвердить";
+  button.textContent = "Подтвердить и получить цвет и номер";
+  mainWindow.style.maxHeight = "188px";
   number.style.display = "none";
+  number.style.transform = "scaleY(0)";
   numbersOfUsers = null;
   refreshButton.remove();
 });

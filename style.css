@@ -96,6 +96,8 @@ body {
   box-shadow: 2px 5px 3px #000;
   text-align: center;
   max-width: 280px;
+  max-height: 188px;
+  transition: max-height 0.5s;
 }
 input {
   font-size: 19px;
@@ -109,8 +111,14 @@ input {
 input:focus {
   box-shadow: 1px 1px 5px darkblue;
 }
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 205px;
+}
 button {
-  height: 65px;
+  height: 55px;
   text-align: center;
   padding: 5px 15px;
   border-radius: 5px;
@@ -124,15 +132,20 @@ button:active {
   top: 2px;
   box-shadow: 0 1px 3px #000;
 }
+button:disabled {
+  position: static;
+  box-shadow: 0 3px 3px #000;
+}
 .number {
-  display: none;
   border-radius: 15px;
   background-color: rgba(230, 229, 250, 0.603);
-  margin: 15px 0;
+  margin-top: 15px;
   padding: 15px;
   text-align: center;
   border: solid black 1px;
   color: black;
+  transform: scaleY(0) translateY(-100px);
+  transition: transform 0.5s;
 }
 #value {
   display: inline-block;
@@ -147,7 +160,26 @@ button:active {
   line-height: 30px;
   border: dotted;
   color: linen;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
 }
+
+.fadeOut {
+  opacity: 0;
+}
+
+.fadeIn {
+  opacity: 1;
+  transition: all 1s;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
+}
+
 .choosed {
   margin-top: 15px;
   display: flex;
@@ -165,19 +197,4 @@ ul li {
   line-height: 25px;
   border-radius: 5px;
   margin-bottom: 5px;
-}
-
-.flash-screen {
-  opacity: 0;
-  z-index: 3;
-  animation: flash 1.5s ease-in;
-}
-
-@keyframes flash {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
 }
